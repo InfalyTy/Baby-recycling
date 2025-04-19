@@ -22,10 +22,13 @@
     }
 
     header img {
-      max-width: 200px;
-      display: block;
-      margin: auto;
-    }
+  max-width: 200px;
+  display: block;
+  margin: auto;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255, 105, 180, 0.4);
+  animation: logoGlow 2s infinite alternate;
+}
 
     nav {
       background: #fff5f8;
@@ -178,7 +181,11 @@
         font-size: 1.2rem;
       }
     }
-  </style>
+  @keyframes logoGlow {
+  0% { box-shadow: 0 0 10px rgba(255, 105, 180, 0.3); }
+  100% { box-shadow: 0 0 30px rgba(255, 105, 180, 0.6); }
+}
+</style>
   <script>
     function toggleMobileMenu() {
       const navMobile = document.getElementById("navMobile");
