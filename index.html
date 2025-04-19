@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baby Recycling</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to bottom, #fefcea, #f1daff);
+      overflow-x: hidden;
+      color: #444;
+    }
+
+    header {
+      background: #fbb1bd;
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      animation: fadeIn 2s ease-in;
+      border-bottom: 5px dotted #fff;
+    }
+
+    header img {
+      max-width: 200px;
+      height: auto;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    header p {
+      margin-top: 1rem;
+      font-size: 1.4rem;
+    }
+
+    nav {
+      background: #fff5f8;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #ff69b4;
+      font-weight: bold;
+      transition: all 0.3s;
+      font-size: 1.1rem;
+    }
+
+    nav a:hover {
+      color: #d63384;
+      transform: scale(1.1);
+    }
+
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: #d86ca5;
+      animation: bounceIn 1s ease-in-out;
+    }
+
+    .productes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #ffffffcc;
+      padding: 1rem;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 105, 180, 0.4);
+    }
+
+    .card img {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+
+    footer {
+      background: #ffd5ec;
+      color: #555;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 700px;
+      height: 700px;
+      border: none;
+      margin: 0 auto;
+      display: block;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.2);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="https://lh6.googleusercontent.com/4EKhTEZrBm6LsG8RfNfvVryf-TgwrY_0u3A5Br26LLCQyAMUSph_XS2MVsP16YsbZamhqn12adTZPbTGzGdJKUA=w16383" alt="Logotip Baby Recycling">
+    <p>Donem una nova vida als articles de bebè</p>
+  </header>
+
+  <nav>
+    <a href="#productes">Productes</a>
+    <a href="#com-funciona">Com funciona</a>
+    <a href="#quisom">Qui som</a>
+    <a href="#contacte">Contacte</a>
+  </nav>
+
+  <section id="productes">
+    <h2>Els nostres productes</h2>
+    <div class="productes">
+      <div class="card">
+        <img src="https://via.placeholder.com/200" alt="Cadira de cotxe">
+        <h3>Cadira de cotxe</h3>
+        <p>Com nova, per a nens de 0-12 mesos</p>
+      </div>
+      <div class="card">
+        <img src="https://via.placeholder.com/200" alt="Bressol de viatge">
+        <h3>Bressol de viatge</h3>
+        <p>Plegable i lleuger, ideal per a viatges</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="com-funciona">
+    <h2>Com funciona</h2>
+    <p>Compra i ven articles de segona mà de forma fàcil i segura. Tots els productes es revisen abans de posar-se a la venda.</p>
+  </section>
+
+  <section id="quisom">
+    <h2>Qui som</h2>
+    <p>Som una botiga compromesa amb la sostenibilitat i l'economia circular. Ajudem famílies a estalviar i reduir residus.</p>
+  </section>
+
+  <section id="contacte">
+    <h2>Contacte</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfwy8aMPPnSMgTtc9V3SO5vZ9waQcBSo67i90XGw9AxL0tKPg/viewform?embedded=true" allowfullscreen>S'està carregant…</iframe>
+  </section>
+
+  <footer>
+    &copy; 2025 Baby Recycling - Tots els drets reservats
+  </footer>
+</body>
+
+</html>
