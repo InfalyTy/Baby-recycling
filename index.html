@@ -7,6 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Baby Recycling</title>
   <style>
+.boto-contacte.actiu {
+  background-color: #ff69b4 !important;
+  color: white !important;
+  box-shadow: 0 0 12px rgba(255,105,180,0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
     #miniLogoWrapper:hover #miniLogo {
   transition: transform 0.4s ease, filter 0.4s ease;
   box-shadow: 0 0 0px rgba(255, 105, 180, 0);
@@ -67,6 +73,81 @@
     width: 90%;
   }
 }
+.boto-contacte {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+.boto-contacte::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.4s ease;
+  z-index: 0;
+}
+.boto-contacte.actiu::before {
+  left: 0;
+}
+.boto-contacte span {
+  position: relative;
+  z-index: 1;
+}
+.boto-contacte {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+.boto-contacte::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.4s ease;
+  z-index: 0;
+}
+.boto-contacte.actiu::before {
+  left: 0;
+}
+.boto-contacte span {
+  position: relative;
+  z-index: 1;
+}
+.boto-contacte {
+  background-color: #fff0f8;
+  border: 2px solid #ff69b4;
+  border-radius: 12px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  color: #ff69b4;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.2);
+}
+.boto-contacte:hover {
+  background-color: #ffebf5;
+  box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+}
+.boto-contacte.actiu {
+  background-color: #ff69b4 !important;
+  color: white !important;
+  box-shadow: 0 0 15px rgba(255,105,180,0.6);
+  border-color: transparent;
+}
+.boto-contacte span {
+  display: flex;
+  align-items: center;
+}
 </style>
 </head>
 <body>
@@ -126,19 +207,18 @@
     <h3 style="color: #d94d8c;">Ens pots trobar aquí:</h3>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2991.293324970222!2d2.003708576200889!3d41.5612532712741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4957a8b92a4b7%3A0x6c84be9f41ad4fef!2sAv.%20Jacquard%2C%2099%2C%2008222%20Terrassa%2C%20Barcelona!5e0!3m2!1sca!2ses!4v1713549031216!5m2!1sca!2ses" width="100%" height="300" style="border:0; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1); max-width: 800px; margin: auto;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
-</section>
 
-<footer style="background-color: #fff0f5; padding: 1rem; text-align: center; font-size: 0.9rem; color: #555; margin-top: 2rem;">
-  &copy; 2025 Baby Recycling · Parafarmacia Nova · Terrassa
-</footer>
 
-<section id="contacte">
   <h2 style="text-align: center; color: #d94d8c;"><span class="titol-efecte">Contacte</span></h2>
   <form id="contactForm" onsubmit="enviarFormulari(event)" style="max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 1rem; padding: 2rem; background-color: #fff; border-radius: 15px; box-shadow: 0 0 10px rgba(255,105,180,0.2);">
     <div style="display: flex; justify-content: center; gap: 1rem;">
-      <button type="button" class="boto-contacte actiu" onclick="canviarContacte('email')">Correu</button>
-      <button type="button" class="boto-contacte" onclick="canviarContacte('telefon')">Telèfon</button>
-    </div>
+  <button type="button" class="boto-contacte actiu" onclick="canviarContacte('email')">
+    <span><i class="fas fa-envelope"></i><strong> Correu</strong></span>
+  </button>
+  <button type="button" class="boto-contacte" onclick="canviarContacte('telefon')">
+    <span><i class="fas fa-phone"></i><strong> Telèfon</strong></span>
+  </button>
+</div>
     <div id="campEmail" style="width: 100%;">
       <div style="position: relative;">
         <i class="fas fa-envelope" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #aaa;"></i>
@@ -160,94 +240,10 @@
       <textarea name="missatge" placeholder="Missatge" required style="padding-left: 35px; width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 8px; min-height: 100px;"></textarea>
     </div>
     <button type="submit" style="padding: 0.7rem; background-color: #ff69b4; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease;">Envia</button>
-  </form>
-</section>
-<script>
-function canviarContacte(opcio) {
-  const botoEmail = document.querySelector('.boto-contacte:nth-child(1)');
-  const botoTelefon = document.querySelector('.boto-contacte:nth-child(2)');
-  const campEmail = document.getElementById('campEmail');
-  const campTelefon = document.getElementById('campTelefon');
+  $1
 
-  if (opcio === 'email') {
-    botoEmail.classList.add('actiu');
-    botoTelefon.classList.remove('actiu');
-    campEmail.style.display = 'block';
-    campTelefon.style.display = 'none';
-    campTelefon.querySelector('input').value = '';
-  } else {
-    botoTelefon.classList.add('actiu');
-    botoEmail.classList.remove('actiu');
-    campEmail.style.display = 'none';
-    campTelefon.style.display = 'block';
-    campEmail.querySelector('input').value = '';
-  }
-}
-</script>
-<div id="popup" class="popup-fons" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.5); z-index: 9999; justify-content: center; align-items: center;">
-  <div class="popup-missatge" style="background: white; padding: 2rem; border-radius: 15px; text-align: center; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.2); animation: baixarPopup 0.4s ease-out forwards;">
-    <button class="popup-tancar" onclick="tancarPopup()" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.2rem; cursor: pointer;">&times;</button>
-    Missatge enviat correctament!
-  </div>
-</div>
-
-<script>
-function enviarFormulari(event) {
-  event.preventDefault();
-  const form = document.getElementById('contactForm');
-  const email = form.querySelector('input[name="email"]');
-  const telefon = form.querySelector('input[name="telefon"]');
-  const emailVisible = document.getElementById('campEmail').style.display !== 'none';
-  if (emailVisible && !email.value.includes('@')) {
-    mostrarPopup("Introdueix un correu vàlid");
-    return;
-  }
-  if (!emailVisible && telefon.value.trim() === '') {
-    mostrarPopup("Introdueix un número de telèfon");
-    return;
-  }
-  mostrarPopup("Missatge enviat correctament!");
-  form.reset();
-  canviarContacte('email');
-}
-function mostrarPopup(text) {
-  const popup = document.getElementById('popup');
-  popup.querySelector('.popup-missatge').innerHTML = `<button class='popup-tancar' onclick='tancarPopup()' style='position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.2rem; cursor: pointer;'>&times;</button>` + text;
-  popup.style.display = 'flex';
-}
-function tancarPopup() {
-  const popup = document.getElementById('popup');
-  popup.style.animation = 'sortirPopup 0.5s ease forwards';
-  setTimeout(() => {
-    popup.style.display = 'none';
-    popup.style.animation = '';
-  }, 500);
-}
-</script>
-
-<style>
-@keyframes baixarPopup {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-@keyframes sortirPopup {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(30px); opacity: 0; }
-}
-</style>
-<script>
-window.addEventListener('scroll', () => {
-  const miniLogo = document.getElementById('miniLogoWrapper');
-  if (window.scrollY > 100) {
-    miniLogo.style.opacity = '1';
-    miniLogo.style.visibility = 'visible';
-    miniLogo.style.transform = 'translateX(0)';
-  } else {
-    miniLogo.style.opacity = '0';
-    miniLogo.style.visibility = 'hidden';
-    miniLogo.style.transform = 'translateX(-10px)';
-  }
-});
-</script>
+<footer style="background-color: #fff0f5; padding: 1rem; text-align: center; font-size: 0.9rem; color: #555; margin-top: 2rem;">
+  &copy; 2025 Baby Recycling · Parafarmacia Nova · Terrassa
+</footer>
 </body>
 </html>
