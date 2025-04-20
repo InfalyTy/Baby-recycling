@@ -3,6 +3,26 @@
 <head>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <script>
+function canviarContacte(opcio) {
+  const botoEmail = document.querySelectorAll('.boto-contacte')[0];
+  const botoTelefon = document.querySelectorAll('.boto-contacte')[1];
+  const campEmail = document.getElementById('campEmail');
+  const campTelefon = document.getElementById('campTelefon');
+
+  if (opcio === 'email') {
+    botoEmail.classList.add('actiu');
+    botoTelefon.classList.remove('actiu');
+    campEmail.style.display = 'block';
+    campTelefon.style.display = 'none';
+  } else {
+    botoTelefon.classList.add('actiu');
+    botoEmail.classList.remove('actiu');
+    campEmail.style.display = 'none';
+    campTelefon.style.display = 'block';
+  }
+}
+</script>
+<script>
 window.addEventListener('scroll', () => {
   const logo = document.getElementById('miniLogoFixed');
   if (window.scrollY > 300) {
@@ -212,10 +232,10 @@ nav a:hover::after {
   
   <div style="display: flex; gap: 2rem; align-items: center;">
     <a href="productes.html" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Productes</a>
-    <a href="#com-funciona" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Com funciona</a>
-    <a href="#quisom" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Qui som</a>
-    <a href="#tenda" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Tenda</a>
-    <a href="#contacte" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Contacte</a>
+    <a href="#com-funciona" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;" onclick="document.getElementById('com-funciona').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Com funciona</a>
+    <a href="#quisom" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;" onclick="document.getElementById('quisom').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Qui som</a>
+    <a href="#tenda" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;" onclick="document.getElementById('tenda').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">Tenda</a>
+    <a href="#contactForm" onclick="document.getElementById('contactForm').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Contacte</a>
   </div>
 </nav>
 
@@ -226,21 +246,21 @@ nav a:hover::after {
   </div>
 </section>
 
-<section id="com-funciona">
+<section id="com-funciona" style="scroll-margin-top: 100px;">
   <h2 style="text-align: center; color: #d94d8c;"><span class="titol-efecte">Com funciona</span></h2>
   <p style="max-width: 700px; margin: auto; text-align: center; color: #444; font-size: 1.1rem;">
     Compra i ven articles de segona mà de forma fàcil i segura. Tots els productes es revisen abans de posar-se a la venda.
   </p>
 </section>
 
-<section id="quisom">
+<section id="quisom" style="scroll-margin-top: 100px;">
   <h2 style="text-align: center; color: #d94d8c;"><span class="titol-efecte">Qui som</span></h2>
   <p style="max-width: 700px; margin: auto; text-align: center; color: #444; font-size: 1.1rem;">
     Som una botiga compromesa amb la sostenibilitat i l'economia circular. Ajudem famílies a estalviar i reduir residus.
   </p>
 </section>
 
-<section id="tenda" style="padding: 2rem;">
+<section id="tenda" style="scroll-margin-top: 100px;" style="padding: 2rem;">
   <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem; max-width: 1000px; margin: auto;">
     <div style="flex: 1; min-width: 280px; max-width: 400px;">
       <h2 style="text-align: center; color: #d94d8c;"><span class="titol-efecte">La nostra tenda</span></h2>
@@ -260,7 +280,7 @@ nav a:hover::after {
 
 
   <h2 style="text-align: center; color: #d94d8c;"><span class="titol-efecte">Contacte</span></h2>
-  <form id="contactForm" onsubmit="enviarFormulari(event)" style="max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 1rem; padding: 2rem; background-color: #fff; border-radius: 15px; box-shadow: 0 0 10px rgba(255,105,180,0.2);">
+  <form id="contactForm" style="scroll-margin-top: 100px;" onsubmit="enviarFormulari(event)" style="max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 1rem; padding: 2rem; background-color: #fff; border-radius: 15px; box-shadow: 0 0 10px rgba(255,105,180,0.2);">
     <div style="display: flex; justify-content: center; gap: 1rem;">
   <button type="button" class="boto-contacte actiu" onclick="canviarContacte('email')">
     <span><i class="fas fa-envelope"></i><strong> Correu</strong></span>
