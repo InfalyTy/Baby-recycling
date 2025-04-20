@@ -2,6 +2,16 @@
 <html lang="ca">
 <head>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script>
+window.addEventListener('scroll', () => {
+  const logo = document.getElementById('miniLogoFixed');
+  if (window.scrollY > 300) {
+    logo.classList.add('visible');
+  } else {
+    logo.classList.remove('visible');
+  }
+});
+</script>
   <link rel="icon" type="image/png" href="https://i.ibb.co/tPDWQMV9/Logo.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -148,18 +158,58 @@
   display: flex;
   align-items: center;
 }
+a {
+  position: relative;
+  text-decoration: none;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background-color: #ff69b4;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease-in-out;
+}
+nav a:hover::after {
+  transform: scaleX(1);
+}
+</style>
+<style>
+#miniLogoFixed {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: 120px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(255,105,180,0.4);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 9999;
+}
+#miniLogoFixed.visible {
+  opacity: 1;
+  transform: scale(1);
+}
 </style>
 </head>
 <body>
+<a href="#" onclick="window.scrollTo({ top: 0, behavior: 'smooth' }); return false;">
+  <img id="miniLogoFixed" src="https://i.ibb.co/tPDWQMV9/Logo.png" alt="Mini logo">
+</a>
 <header style="text-align: center; padding: 2rem 1rem;">
   <img src="https://i.ibb.co/tPDWQMV9/Logo.png" alt="Logotip Baby Recycling" style="max-width: 250px; width: 100%; height: auto; border-radius: 20px; box-shadow: 0 0 25px rgba(255, 105, 180, 0.4);">
   <p style="font-size: 1.4rem;">Parafarmacia Nova</p>
   <p style="font-size: 1.8rem; color: #ff69b4; font-weight: bold; text-shadow: 0 0 10px rgba(255,105,180,0.6);">Baby Recycling</p>
 </header>
-<nav style="background: #fff5f8; font-weight: bold; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; padding: 0.5rem 1rem; gap: 1rem;">
-  <a href="#miniLogoWrapper" id="miniLogoWrapper" style="display: flex; align-items: center; height: 50px; width: 100px; min-width: 100px; transition: opacity 0.5s ease, transform 0.3s ease; opacity: 0; transform: translateX(-10px); visibility: hidden;">
-    <img id="miniLogo" src="https://i.ibb.co/tPDWQMV9/Logo.png" alt="Mini logo" style="height: auto; width: 100px; object-fit: cover; border-radius: 8px; box-shadow: 0 0 5px rgba(255,105,180,0.4); display: block;">
-  </a>
+<nav style="background: #fff5f8; font-weight: bold; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 0.5rem 1rem; display: flex; justify-content: center;">
+  <div style="display: flex; gap: 2rem; align-items: center;">
+  
   <div style="display: flex; gap: 2rem; align-items: center;">
     <a href="productes.html" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Productes</a>
     <a href="#com-funciona" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Com funciona</a>
