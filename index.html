@@ -15,18 +15,33 @@
 }
 function mostrarPopup(event) {
   event.preventDefault();
-  const popup = document.createElement('div');
-  popup.innerHTML = `
-    <div id="popupOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10000; animation: fadeIn 0.3s ease;">
-      <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 0 15px rgba(0,0,0,0.3); position: relative; text-align: center; animation: slideDown 0.4s ease;">
-        <button onclick=\"document.getElementById('popupOverlay').remove()\" style=\"position: absolute; top: 0.5rem; right: 0.5rem; background: transparent; border: none; font-size: 1.2rem; cursor: pointer;\">&times;</button>
-        <h3 style="color: #d94d8c;">Missatge enviat correctament!</h3>
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'Accept': 'application/json'
+    }
+  }).then(() => {
+    const popup = document.createElement('div');
+    popup.innerHTML = `
+      <div id="popupOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10000; animation: fadeIn 0.3s ease;">
+        <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 0 15px rgba(0,0,0,0.3); position: relative; text-align: center; animation: slideDown 0.4s ease;">
+          <button onclick=\"document.getElementById('popupOverlay').remove()\" style=\"position: absolute; top: 0.5rem; right: 0.5rem; background: transparent; border: none; font-size: 1.2rem; cursor: pointer;\">&times;</button>
+          <h3 style="color: #d94d8c;">Missatge enviat correctament!</h3>
+        </div>
       </div>
-    </div>
-  `;
-  document.body.appendChild(popup);
-  setTimeout(() => {
+    `;
+    document.body.appendChild(popup);
+    form.reset();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }).catch(() => {
+    alert("Hi ha hagut un error. Torna-ho a intentar.");
+  });
+});
     document.getElementById('contactForm').reset();
   }, 2000);
 }
