@@ -265,11 +265,23 @@
 </section>
 
   <section id="contacte">
-    <h2>Contacte</h2>
-    <div class="form-container">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfwy8aMPPnSMgTtc9V3SO5vZ9waQcBSo67i90XGw9AxL0tKPg/viewform?embedded=true" allowfullscreen>S'està carregant…</iframe>
+  <h2>Contacte</h2>
+  <form action="https://formsubmit.co/lluis.garcia.cascon@gmail.com" method="POST" style="max-width: 600px; margin: auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 0 15px rgba(255,105,180,0.2);">
+    <div style="margin-bottom: 1rem;">
+      <label for="nom">Nom:</label><br>
+      <input type="text" id="nom" name="nom" required style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;">
     </div>
-  </section>
+    <div style="margin-bottom: 1rem;">
+      <label for="email">Correu electrònic:</label><br>
+      <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;">
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <label for="missatge">Missatge:</label><br>
+      <textarea id="missatge" name="missatge" rows="5" required style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;"></textarea>
+    </div>
+    <button type="submit" style="background-color: #ff69b4; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 10px; cursor: pointer; font-size: 1rem;">Enviar</button>
+  </form>
+</section>
 
   <footer>
     &copy; 2025 Baby Recycling - Tots els drets reservats
