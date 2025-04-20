@@ -18,6 +18,7 @@
     }
     h1 {
       color: #d94d8c;
+      font-size: 2rem;
     }
     .galeria {
       display: flex;
@@ -27,6 +28,7 @@
       margin-top: 2rem;
     }
     .galeria img {
+      width: 100%;
       max-width: 200px;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(255,105,180,0.3);
@@ -35,19 +37,49 @@
     .galeria img:hover {
       transform: scale(1.05);
     }
+    .tornar {
+      margin-top: 3rem;
+    }
+    .tornar a {
+      background-color: #ff69b4;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      box-shadow: 0 0 10px rgba(255,105,180,0.3);
+      transition: background-color 0.3s ease;
+    }
+    .tornar a:hover {
+      background-color: #e555a1;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .galeria {
+        gap: 1rem;
+      }
+      .galeria img {
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
   <h1>Els nostres productes</h1>
   <p>Explora la nostra selecció d'articles de bebè de segona mà en perfecte estat.</p>
   <div class="galeria">
-    <!-- Afegeix imatges aquí -->
     <img src="https://via.placeholder.com/200x200?text=Producte+1" alt="Producte 1">
     <img src="https://via.placeholder.com/200x200?text=Producte+2" alt="Producte 2">
     <img src="https://via.placeholder.com/200x200?text=Producte+3" alt="Producte 3">
   </div>
-  <div style="margin-top: 3rem;">
-    <a href="index.html" style="background-color: #ff69b4; color: white; padding: 0.75rem 1.5rem; text-decoration: none; border-radius: 10px; font-weight: bold; box-shadow: 0 0 10px rgba(255,105,180,0.3);">Torna a l'inici</a>
+  <div class="tornar">
+    <a href="index.html">Torna a l'inici</a>
   </div>
 </body>
 </html>
