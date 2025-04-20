@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <link rel="icon" type="image/png" href="https://i.ibb.co/tPDWQMV9/Logo.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Baby Recycling</title>
   <style>
     #miniLogoWrapper:hover #miniLogo {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px 8px rgba(255,105,180,0.7);
-  filter: brightness(1);
+  transition: transform 0.4s ease, filter 0.4s ease;
+  box-shadow: 0 0 0px rgba(255, 105, 180, 0);
+}
+#miniLogoWrapper.visible #miniLogo {
+  box-shadow: 0 0 12px rgba(255, 105, 180, 0.7);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
 }
     #miniLogo {
       transition: transform 0.3s ease, filter 0.3s ease;
@@ -24,251 +28,83 @@
       overflow-x: hidden;
       color: #444;
     }
-
-30% { opacity: 0.7; filter: brightness(1.3) blur(1px); }
-  70% { opacity: 1; filter: brightness(1.1) blur(0.3px); }
-  100% { opacity: 1; filter: brightness(1) blur(0); }
-}
-  30% { opacity: 0.7; filter: brightness(1.3) blur(1px); }
-  70% { opacity: 1; filter: brightness(1.1) blur(0.3px); }
-  100% { opacity: 1; filter: brightness(1) blur(0); }
-}
-    body {
-      margin: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background-color: #ffe6f0;
-      background-image: linear-gradient(45deg, #ffe6f0 25%, #ffffff 25%, #ffffff 50%, #ffe6f0 50%, #ffe6f0 75%, #ffffff 75%, #ffffff);
-      background-size: 40px 40px;
-      overflow-x: hidden;
-      color: #444;
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-    header img {
-      max-width: 200px;
-      display: block;
-      margin: auto;
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(255, 105, 180, 0.4);
-      animation: logoGlow 2s infinite alternate;
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    h2 {
-      color: #d94d8c;
-      text-align: center;
-    }
-    .boto-contacte {
-      background: #fce4ec;
-      border: 2px solid #ff69b4;
-      padding: 0.5rem 1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      flex: 1;
-    }
-    .boto-contacte:hover {
-      background-color: #ffe3ee;
-    }
-    .boto-contacte.actiu {
-      background-color: #ff69b4;
-      color: white;
-      font-weight: bold;
-      box-shadow: 0 0 10px rgba(255,105,180,0.3);
-    }
-    .popup-fons {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(4px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      transition: opacity 0.5s ease;
-    }
-    .popup-missatge {
-      background-color: #d4edda;
-      color: #155724;
-      padding: 2rem;
-      border-radius: 15px;
-      border: 1px solid #c3e6cb;
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
-      position: relative;
-      animation: popupEntrar 0.5s ease-out;
-    }
-    .popup-tancar {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 1.2rem;
-      background: none;
-      border: none;
-      color: #155724;
-      cursor: pointer;
-    }
-    @keyframes popupEntrar {
-      from { transform: translateY(-30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    @keyframes popupSortir {
-      from { transform: translateY(0); opacity: 1; }
-      to { transform: translateY(50px); opacity: 0; }
-    }
-      @keyframes brillarFormulari {
-      0% { box-shadow: 0 0 15px rgba(255,105,180,0.2); }
-      100% { box-shadow: 0 0 25px rgba(255,105,180,0.6); }
-    }
-      @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      nav > div {
-        flex-direction: column;
-        gap: 0.5rem;
-        padding: 0.5rem;
-        align-items: flex-start;
-      }
-      header img {
-        max-width: 150px;
-      }
-      section {
-        padding: 1rem;
-      }
-      form {
-        padding: 1rem;
-      }
-    }
-  </style>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const botoContacte = document.querySelectorAll(".boto-contacte");
-      const contacteInput = document.getElementById("contactePreferit");
-      const campCorreu = document.getElementById("campCorreu");
-      const campTelefon = document.getElementById("campTelefon");
-      botoContacte.forEach(boto => {
-        boto.addEventListener("click", () => {
-          botoContacte.forEach(b => b.classList.remove("actiu"));
-          boto.classList.add("actiu");
-          contacteInput.value = boto.dataset.valor;
-          if (boto.dataset.valor === "correu") {
-            campCorreu.style.display = "block";
-            campTelefon.style.display = "none";
-          } else {
-            campCorreu.style.display = "none";
-            campTelefon.style.display = "block";
-          }
-        });
-      });
-    });
-    function mostrarPopup(missatge = "Formulari enviat correctament! Gràcies per contactar.") {
-      const popup = document.getElementById("popupFons");
-      const text = document.getElementById("popupText");
-      text.innerText = missatge;
-      popup.style.display = "flex";
-    }
-    function tancarPopup() {
-      const popup = document.getElementById("popupFons");
-      const missatge = document.getElementById("popupMissatge");
-      missatge.style.animation = "popupSortir 0.5s ease-in forwards";
-      popup.style.opacity = "0";
-      setTimeout(() => {
-        popup.style.display = "none";
-        popup.style.opacity = "1";
-        missatge.style.animation = "popupEntrar 0.5s ease-out";
-      }, 500);
-    }
-    function enviarFormulari(event) {
-      event.preventDefault();
-      const form = document.getElementById("contactForm");
-      const dades = new FormData(form);
-      const contactePreferit = dades.get("contactePreferit");
-      const nom = dades.get("nom");
-      const email = dades.get("email");
-      const telefon = dades.get("telefon");
-      const missatge = dades.get("missatge");
-      if (!nom || !missatge || (contactePreferit === "correu" && !email) || (contactePreferit === "telefon" && !telefon)) {
-        mostrarPopup("Has d'omplir tots els camps del formulari.");
-        return;
-      }
-      if (contactePreferit === "correu" && !email.includes("@")) {
-        mostrarPopup("El correu electrònic ha de contenir una '@'.");
-        return;
-      }
-      if (contactePreferit === "telefon" && (telefon.length < 9 || !/^\d+$/.test(telefon))) {
-        mostrarPopup("El número de telèfon ha de tenir com a mínim 9 dígits i només pot contenir números.");
-        return;
-      }
-      fetch("https://formsubmit.co/ajax/lidiaarbosborras@gmail.com", {
-        method: "POST",
-        headers: { 'Accept': 'application/json' },
-        body: dades
-      })
-      .then(response => {
-        if (response.ok) {
-          mostrarPopup();
-          form.reset();
-        } else {
-          mostrarPopup("Hi ha hagut un error. Torna-ho a provar més tard.");
-        }
-      })
-      .catch(error => {
-        mostrarPopup("Error de connexió. Intenta-ho més tard.");
-      });
-    }
-      window.addEventListener('scroll', () => {
-  const miniLogo = document.getElementById('miniLogo');
-  const wrapper = document.getElementById('miniLogoWrapper');
-  if (window.scrollY > 150) {
-    wrapper.style.opacity = '1';
-    wrapper.style.transform = 'translateX(0)';
-    wrapper.style.visibility = 'visible';
-  } else {
-    wrapper.style.opacity = '0';
-    wrapper.style.transform = 'translateX(-10px)';
-    wrapper.style.visibility = 'hidden';
+  @media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
-});
-  </script>
+  nav > div {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  nav a {
+    font-size: 1rem;
+  }
+  header img {
+    max-width: 200px;
+  }
+  h2 {
+    font-size: 1.4rem;
+  }
+  section {
+    padding: 1rem;
+  }
+  #contactForm {
+    padding: 1rem;
+  }
+  .popup-missatge {
+    width: 90%;
+  }
+}
+</style>
 </head>
 <body>
-  <header>
-  <img src="https://i.ibb.co/tPDWQMV9/Logo.png" alt="Logotip Baby Recycling">
-  <p style="text-align: center; font-size: 1.4rem;">Parafarmacia Nova</p>
-<p style="text-align: center; font-size: 1.8rem; color: #ff69b4; font-weight: bold; text-shadow: 0 0 10px rgba(255,105,180,0.6);">Baby Recycling</p>
+<header style="text-align: center; padding: 2rem 1rem;">
+  <img src="https://i.ibb.co/tPDWQMV9/Logo.png" alt="Logotip Baby Recycling" style="max-width: 250px; width: 100%; height: auto; border-radius: 20px; box-shadow: 0 0 25px rgba(255, 105, 180, 0.4);">
+  <p style="font-size: 1.4rem;">Parafarmacia Nova</p>
+  <p style="font-size: 1.8rem; color: #ff69b4; font-weight: bold; text-shadow: 0 0 10px rgba(255,105,180,0.6);">Baby Recycling</p>
 </header>
-<nav style="background: #fff5f8; font-weight: bold; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; align-items: center; padding: 0.5rem 1rem; gap: 1rem;">
-  <a href="#" id="miniLogoWrapper" style="display: flex; align-items: center; height: 50px; width: 100px; min-width: 100px; transition: opacity 0.5s ease, transform 0.3s ease; opacity: 0; transform: translateX(-10px); visibility: hidden;">
+<nav style="background: #fff5f8; font-weight: bold; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; padding: 0.5rem 1rem; gap: 1rem;">
+  <a href="#miniLogoWrapper" id="miniLogoWrapper" style="display: flex; align-items: center; height: 50px; width: 100px; min-width: 100px; transition: opacity 0.5s ease, transform 0.3s ease; opacity: 0; transform: translateX(-10px); visibility: hidden;">
     <img id="miniLogo" src="https://i.ibb.co/tPDWQMV9/Logo.png" alt="Mini logo" style="height: auto; width: 100px; object-fit: cover; border-radius: 8px; box-shadow: 0 0 5px rgba(255,105,180,0.4); display: block;">
   </a>
-
-  <div style="max-width: 960px; margin: auto; display: flex; justify-content: center; align-items: center; gap: 2rem; padding: 1rem;">
-    <a href="productes.html" target="_blank" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Productes</a>
+  <div style="display: flex; gap: 2rem; align-items: center;">
+    <a href="productes.html" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Productes</a>
     <a href="#com-funciona" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Com funciona</a>
     <a href="#quisom" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Qui som</a>
     <a href="#tenda" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Tenda</a>
     <a href="#contacte" style="text-decoration: none; color: #ff69b4; font-size: 1.1rem;">Contacte</a>
   </div>
 </nav>
-  
 
 <section id="productes">
-  <h2>Tenim molts articles de bebè</h2>
+  <h2 style="text-align: center; color: #d94d8c;"><span class="titol-efecte">Tenda d'articles de segona mà per a nadons a Terrassa.</span></h2>
   <div style="text-align: center; margin-top: 2rem;">
-    <img src="https://i.ibb.co/PsGNS31Q/IMG-20250419-WA0028.jpg" alt="Articles de bebè" style="width: 60%; height: auto; max-width: 600px; border-radius: 20px; box-shadow: 0 0 15px rgba(0,0,0,0.1); animation: brillarFormulari 3s infinite alternate;">
+    <img src="https://i.ibb.co/PsGNS31Q/IMG-20250419-WA0028.jpg" alt="Articles de bebè" style="width: 60%; height: auto; max-width: 600px; border-radius: 20px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
   </div>
 </section>
 
 <section id="com-funciona">
-  <h2>Com funciona</h2>
-  <p style="max-width: 700px; margin: auto; text-align: center;">
+  <h2 style="text-align: center; color: #d94d8c;"><span class="titol-efecte">Com funciona</span></h2>
+  <p style="max-width: 700px; margin: auto; text-align: center; color: #444; font-size: 1.1rem;">
     Compra i ven articles de segona mà de forma fàcil i segura. Tots els productes es revisen abans de posar-se a la venda.
   </p>
 </section>
 
 <section id="quisom">
-  <h2>Qui som</h2>
-  <p style="max-width: 700px; margin: auto; text-align: center;">
+  <h2 style="text-align: center; color: #d94d8c;"><span class="titol-efecte">Qui som</span></h2>
+  <p style="max-width: 700px; margin: auto; text-align: center; color: #444; font-size: 1.1rem;">
     Som una botiga compromesa amb la sostenibilitat i l'economia circular. Ajudem famílies a estalviar i reduir residus.
   </p>
 </section>
@@ -276,67 +112,142 @@
 <section id="tenda" style="padding: 2rem;">
   <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2rem; max-width: 1000px; margin: auto;">
     <div style="flex: 1; min-width: 280px; max-width: 400px;">
-      <h2 style="text-align: left;">La nostra tenda</h2>
-      <p style="text-align: left; font-size: 1.1rem;">
+      <h2 style="text-align: center; color: #d94d8c;"><span class="titol-efecte">La nostra tenda</span></h2>
+      <p style="text-align: center; font-size: 1.1rem;">
         Visita'ns i descobreix tots els productes de segona mà que tenim per a nadons i famílies.<br>
         Un espai cuidat, amable i ple d'oportunitats per donar una nova vida als articles infantils.
       </p>
     </div>
     <div style="flex: 1; min-width: 250px; text-align: center;">
-      <img
-        src="https://i.ibb.co/G4MNzBtc/IMG-20250419-WA0021.jpg"
-        alt="Interior de la tenda"
-        style="max-width: 100%; width: 300px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1);"
-      >
+      <img src="https://i.ibb.co/G4MNzBtc/IMG-20250419-WA0021.jpg" alt="Interior de la tenda" style="max-width: 100%; width: 300px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.1);">
     </div>
   </div>
   <div style="margin-top: 2rem; text-align: center;">
     <h3 style="color: #d94d8c;">Ens pots trobar aquí:</h3>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2991.293324970222!2d2.003708576200889!3d41.5612532712741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4957a8b92a4b7%3A0x6c84be9f41ad4fef!2sAv.%20Jacquard%2C%2099%2C%2008222%20Terrassa%2C%20Barcelona!5e0!3m2!1sca!2ses!4v1713549031216!5m2!1sca!2ses"
-      width="100%" height="300" style="border:0; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1); max-width: 800px; margin: auto;"
-      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2991.293324970222!2d2.003708576200889!3d41.5612532712741!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4957a8b92a4b7%3A0x6c84be9f41ad4fef!2sAv.%20Jacquard%2C%2099%2C%2008222%20Terrassa%2C%20Barcelona!5e0!3m2!1sca!2ses!4v1713549031216!5m2!1sca!2ses" width="100%" height="300" style="border:0; border-radius: 15px; box-shadow: 0 0 10px rgba(0,0,0,0.1); max-width: 800px; margin: auto;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   </div>
 </section>
-  <section id="contacte">
-    <h2>Contacte</h2>
-    <form id="contactForm" onsubmit="enviarFormulari(event)" style="animation: brillarFormulari 3s infinite alternate; max-width: 600px; margin: auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 0 15px rgba(255,105,180,0.2);">
-      <div style="margin-bottom: 1rem;">
-        <label for="nom">Nom:</label><br>
-        <input type="text" id="nom" name="nom" required style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;">
-      </div>
-      <div style="margin-bottom: 1rem;">
-        <label>Selecciona com vols que et contactem:</label><br>
-        <div id="opcionsContacte" style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-          <button type="button" class="boto-contacte actiu" data-valor="correu">Correu electrònic</button>
-          <button type="button" class="boto-contacte" data-valor="telefon">Telèfon</button>
-        </div>
-        <input type="hidden" name="contactePreferit" id="contactePreferit" value="correu">
-      </div>
-      <div style="margin-bottom: 1rem;" id="campCorreu">
-        <label for="email">Correu electrònic:</label><br>
-        <input type="email" id="email" name="email" style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;">
-      </div>
-      <div style="margin-bottom: 1rem; display: none;" id="campTelefon">
-        <label for="telefon">Telèfon:</label><br>
-        <input type="tel" id="telefon" name="telefon" style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;">
-      </div>
-      <div style="margin-bottom: 1rem;">
-        <label for="missatge">Missatge:</label><br>
-        <textarea id="missatge" name="missatge" rows="5" required style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;"></textarea>
-      </div>
-      <button type="submit" style="background-color: #ff69b4; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 10px; cursor: pointer; font-size: 1rem;">Enviar</button>
-    </form>
-  </section>
-  <div id="popupFons" class="popup-fons" style="display: none;">
-    <div id="popupMissatge" class="popup-missatge">
-      <button class="popup-tancar" onclick="tancarPopup()">&times;</button>
-      <p id="popupText">Formulari enviat correctament! Gràcies per contactar.</p>
-    </div>
-  </div>
+
 <footer style="background-color: #fff0f5; padding: 1rem; text-align: center; font-size: 0.9rem; color: #555; margin-top: 2rem;">
   &copy; 2025 Baby Recycling · Parafarmacia Nova · Terrassa
 </footer>
+
+<section id="contacte">
+  <h2 style="text-align: center; color: #d94d8c;"><span class="titol-efecte">Contacte</span></h2>
+  <form id="contactForm" onsubmit="enviarFormulari(event)" style="max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 1rem; padding: 2rem; background-color: #fff; border-radius: 15px; box-shadow: 0 0 10px rgba(255,105,180,0.2);">
+    <div style="display: flex; justify-content: center; gap: 1rem;">
+      <button type="button" class="boto-contacte actiu" onclick="canviarContacte('email')">Correu</button>
+      <button type="button" class="boto-contacte" onclick="canviarContacte('telefon')">Telèfon</button>
+    </div>
+    <div id="campEmail" style="width: 100%;">
+      <div style="position: relative;">
+        <i class="fas fa-envelope" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #aaa;"></i>
+        <input name="email" placeholder="Correu" required style="padding-left: 35px; width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 8px;">
+      </div>
+    </div>
+    <div id="campTelefon" style="display: none; width: 100%;">
+      <div style="position: relative;">
+        <i class="fas fa-phone" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #aaa;"></i>
+        <input name="telefon" placeholder="Telèfon" pattern="[0-9]*" inputmode="numeric" style="padding-left: 35px; width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 8px;">
+      </div>
+    </div>
+    <div style="position: relative;">
+      <i class="fas fa-user" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #aaa;"></i>
+      <input name="nom" placeholder="Nom" required style="padding-left: 35px; width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 8px;">
+    </div>
+    <div style="position: relative;">
+      <i class="fas fa-comment" style="position: absolute; left: 10px; top: 15px; color: #aaa;"></i>
+      <textarea name="missatge" placeholder="Missatge" required style="padding-left: 35px; width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 8px; min-height: 100px;"></textarea>
+    </div>
+    <button type="submit" style="padding: 0.7rem; background-color: #ff69b4; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease;">Envia</button>
+  </form>
+</section>
+<script>
+function canviarContacte(opcio) {
+  const botoEmail = document.querySelector('.boto-contacte:nth-child(1)');
+  const botoTelefon = document.querySelector('.boto-contacte:nth-child(2)');
+  const campEmail = document.getElementById('campEmail');
+  const campTelefon = document.getElementById('campTelefon');
+
+  if (opcio === 'email') {
+    botoEmail.classList.add('actiu');
+    botoTelefon.classList.remove('actiu');
+    campEmail.style.display = 'block';
+    campTelefon.style.display = 'none';
+    campTelefon.querySelector('input').value = '';
+  } else {
+    botoTelefon.classList.add('actiu');
+    botoEmail.classList.remove('actiu');
+    campEmail.style.display = 'none';
+    campTelefon.style.display = 'block';
+    campEmail.querySelector('input').value = '';
+  }
+}
+</script>
+<div id="popup" class="popup-fons" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.5); z-index: 9999; justify-content: center; align-items: center;">
+  <div class="popup-missatge" style="background: white; padding: 2rem; border-radius: 15px; text-align: center; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.2); animation: baixarPopup 0.4s ease-out forwards;">
+    <button class="popup-tancar" onclick="tancarPopup()" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.2rem; cursor: pointer;">&times;</button>
+    Missatge enviat correctament!
+  </div>
+</div>
+
+<script>
+function enviarFormulari(event) {
+  event.preventDefault();
+  const form = document.getElementById('contactForm');
+  const email = form.querySelector('input[name="email"]');
+  const telefon = form.querySelector('input[name="telefon"]');
+  const emailVisible = document.getElementById('campEmail').style.display !== 'none';
+  if (emailVisible && !email.value.includes('@')) {
+    mostrarPopup("Introdueix un correu vàlid");
+    return;
+  }
+  if (!emailVisible && telefon.value.trim() === '') {
+    mostrarPopup("Introdueix un número de telèfon");
+    return;
+  }
+  mostrarPopup("Missatge enviat correctament!");
+  form.reset();
+  canviarContacte('email');
+}
+function mostrarPopup(text) {
+  const popup = document.getElementById('popup');
+  popup.querySelector('.popup-missatge').innerHTML = `<button class='popup-tancar' onclick='tancarPopup()' style='position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 1.2rem; cursor: pointer;'>&times;</button>` + text;
+  popup.style.display = 'flex';
+}
+function tancarPopup() {
+  const popup = document.getElementById('popup');
+  popup.style.animation = 'sortirPopup 0.5s ease forwards';
+  setTimeout(() => {
+    popup.style.display = 'none';
+    popup.style.animation = '';
+  }, 500);
+}
+</script>
+
+<style>
+@keyframes baixarPopup {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes sortirPopup {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(30px); opacity: 0; }
+}
+</style>
+<script>
+window.addEventListener('scroll', () => {
+  const miniLogo = document.getElementById('miniLogoWrapper');
+  if (window.scrollY > 100) {
+    miniLogo.style.opacity = '1';
+    miniLogo.style.visibility = 'visible';
+    miniLogo.style.transform = 'translateX(0)';
+  } else {
+    miniLogo.style.opacity = '0';
+    miniLogo.style.visibility = 'hidden';
+    miniLogo.style.transform = 'translateX(-10px)';
+  }
+});
+</script>
 </body>
 </html>
