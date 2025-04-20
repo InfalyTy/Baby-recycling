@@ -1,7 +1,31 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous">
+function enviarFormulari(event) {
+  event.preventDefault();
+  const popup = document.createElement('div');
+  popup.innerHTML = `
+    <div id="popupOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 10000; animation: fadeIn 0.3s ease;">
+      <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 0 15px rgba(0,0,0,0.3); position: relative; text-align: center; animation: slideDown 0.4s ease;">
+        <button onclick="document.getElementById('popupOverlay').remove()" style="position: absolute; top: 0.5rem; right: 0.5rem; background: transparent; border: none; font-size: 1.2rem; cursor: pointer;">&times;</button>
+        <h3 style="color: #d94d8c;">Missatge enviat correctament!</h3>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(popup);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+</script>
 <script>
 function canviarContacte(opcio) {
   const botoEmail = document.querySelectorAll('.boto-contacte')[0];
@@ -280,7 +304,7 @@ nav a:hover::after {
 
 
   <h2 style="text-align: center; color: #d94d8c;"><span class="titol-efecte">Contacte</span></h2>
-  <form id="contactForm" style="scroll-margin-top: 100px;" onsubmit="enviarFormulari(event)" style="max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 1rem; padding: 2rem; background-color: #fff; border-radius: 15px; box-shadow: 0 0 10px rgba(255,105,180,0.2);">
+  <form id="contactForm" onsubmit="enviarFormulari(event)" style="scroll-margin-top: 100px; max-width: 500px; margin: auto; display: flex; flex-direction: column; gap: 1rem; padding: 2rem; background-color: #fff; border-radius: 15px; box-shadow: 0 0 10px rgba(255,105,180,0.2);">
     <div style="display: flex; justify-content: center; gap: 1rem;">
   <button type="button" class="boto-contacte actiu" onclick="canviarContacte('email')">
     <span><i class="fas fa-envelope"></i><strong> Correu</strong></span>
@@ -309,8 +333,8 @@ nav a:hover::after {
       <i class="fas fa-comment" style="position: absolute; left: 10px; top: 15px; color: #aaa;"></i>
       <textarea name="missatge" placeholder="Missatge" required style="padding-left: 35px; width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 8px; min-height: 100px;"></textarea>
     </div>
-    <button type="submit" style="padding: 0.7rem; background-color: #ff69b4; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; transition: background-color 0.3s ease;">Envia</button>
-
+    $1
+</form>
 <footer style="background-color: #fff0f5; padding: 1rem; text-align: center; font-size: 0.9rem; color: #555; margin-top: 2rem;">
   &copy; 2025 Baby Recycling · Parafarmacia Nova · Terrassa
 </footer>
