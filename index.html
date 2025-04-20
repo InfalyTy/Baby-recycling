@@ -191,7 +191,34 @@
       const navMobile = document.getElementById("navMobile");
       navMobile.style.display = navMobile.style.display === "flex" ? "none" : "flex";
     }
-  </script>
+    function enviarFormulari(event) {
+    event.preventDefault();
+    const form = document.getElementById("contactForm");
+    const dades = new FormData(form);
+
+    fetch("https://formsubmit.co/ajax/lluis.garcia.cascon@gmail.com", {
+      method: "POST",
+      headers: { 'Accept': 'application/json' },
+      body: dades
+    })
+    .then(response => {
+      if (response.ok) {
+        alert("Formulari enviat correctament! Gràcies per contactar.");
+        form.reset();
+      } else {
+        alert("Hi ha hagut un error. Torna-ho a provar més tard.");
+      }
+    })
+    .catch(error => {
+      alert("Error de connexió. Intenta-ho més tard.");
+    });
+  }
+</script>
+<script>
+  function mostrarPopup() {
+    alert('Formulari enviat correctament! Gràcies per contactar.');
+  }
+</script>
 </head>
 <body>
   <header>
@@ -266,7 +293,7 @@
 
   <section id="contacte">
   <h2>Contacte</h2>
-  <form action="https://formsubmit.co/lluis.garcia.cascon@gmail.com" method="POST" style="max-width: 600px; margin: auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 0 15px rgba(255,105,180,0.2);">
+  <form id="contactForm" method="POST" onsubmit="enviarFormulari(event)" style="max-width: 600px; margin: auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 0 15px rgba(255,105,180,0.2);">
     <div style="margin-bottom: 1rem;">
       <label for="nom">Nom:</label><br>
       <input type="text" id="nom" name="nom" required style="width: 100%; padding: 0.5rem; border-radius: 8px; border: 1px solid #ccc;">
